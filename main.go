@@ -71,7 +71,6 @@ func NewModel(weights []*Tensor, biases []*Tensor) *Model {
 }
 
 func (m *Model) Forward(x *Tensor) *Tensor {
-	// Note to self: this loop is fine
 	for i := 0; i < len(m.Weights); i++ {
 		x = x.MatMul(m.Weights[i]).Add(m.Biases[i]).Sigmoid()
 	}
@@ -293,7 +292,6 @@ func (t1 *Tensor) MatMul(t2 *Tensor) *Tensor {
 
 // TODO: something fishy is going on here
 func (t *Tensor) Backward(grad []float32) {
-	// apparently, the gradient should be added
 	t.grad = add(t.grad, grad)
 
 	if t.parents != nil {
